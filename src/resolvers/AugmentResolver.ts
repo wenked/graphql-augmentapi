@@ -12,6 +12,7 @@ export default class AugmentResolver {
 		try {
 			console.log(chalk.greenBright.bold("Executando augments query"));
 			const augments = await prisma.augments.findMany();
+			console.log(augments);
 			console.log(chalk.blueBright.bold(`Found ${augments.length} augments`));
 
 			return augments;
