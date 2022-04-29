@@ -6,6 +6,7 @@
 type Augment {
   createdAt: DateTime!
   id: ID!
+  img: String!
   name: String!
   pickrate: String!
   placement: String!
@@ -23,6 +24,17 @@ The javascript `Date` as string. Type represents date and time as the ISO Date s
 """
 scalar DateTime
 
+type Historic_Stats {
+  created_at: DateTime!
+  id: ID!
+  progresso: Float!
+  status: String!
+  updated_at: DateTime!
+  user: String!
+}
+
 type Query {
   Augments: [Augment!]!
+  get_Historic_Stats(id: Float!): Historic_Stats!
+  Send_to_queue: Historic_Stats!
 }
