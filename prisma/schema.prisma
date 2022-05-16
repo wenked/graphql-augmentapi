@@ -27,6 +27,29 @@ model augments {
   updatedAt DateTime @default(now())
 }
 
+model matches {
+  id Int @id @default(autoincrement())
+  matchid String?
+  elo String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model augments_match_data {
+  id Int @id @default(autoincrement())
+  matchid String?
+  elo String?
+  game_version String?
+  placement String?
+  augment String?
+  api_name String?
+  tier String?
+  round String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+
 model historic_stats {
    id Int @id @default(autoincrement()) 
    user String?
