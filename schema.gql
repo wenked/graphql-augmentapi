@@ -6,17 +6,17 @@
 type Augment {
   createdAt: DateTime!
   id: ID!
-  img: String!
+  img: String
   name: String!
-  pickrate: String!
+  pickrate: String
   placement: String!
   stage14: String!
   stage33: String!
   stage46: String!
   tier: String!
-  top4: String!
+  top4: String
   updatedAt: DateTime!
-  winrate: String!
+  winrate: String
 }
 
 """

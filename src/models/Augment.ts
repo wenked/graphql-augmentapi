@@ -11,16 +11,16 @@ export class Augment {
 	@Field()
 	tier: string;
 
-	@Field()
+	@Field({ nullable: true })
 	pickrate: string;
 
 	@Field()
 	placement: string;
 
-	@Field()
+	@Field({ nullable: true })
 	top4: string;
 
-	@Field()
+	@Field({ nullable: true })
 	winrate: string;
 
 	@Field()
@@ -32,7 +32,7 @@ export class Augment {
 	@Field()
 	stage46: string;
 
-	@Field()
+	@Field({ nullable: true })
 	img: string;
 
 	@Field()

@@ -33,7 +33,12 @@ export default class AugmentResolver {
 					status: "Inicializando",
 				},
 			});
-			const teste = { ...historic_stats, generate_player_data: 0 };
+			const teste = {
+				...historic_stats,
+				generate_player_data: 0,
+				grab_match_data: 0,
+				generete_augment_stats: 1,
+			};
 
 			await sendToQueue("augments_queue", teste);
 

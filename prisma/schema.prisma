@@ -23,6 +23,7 @@ model augments {
   stage33 String?
   stage46 String?
   img String?
+  api_name String?
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
