@@ -35,9 +35,9 @@ export default class AugmentResolver {
 			});
 			const teste = {
 				...historic_stats,
-				generate_player_data: 0,
-				grab_match_data: 0,
-				generete_augment_stats: 1,
+				generate_player_data: false,
+				grab_match_data: false,
+				generete_augment_stats: true,
 			};
 
 			await sendToQueue("augments_queue", teste);

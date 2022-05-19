@@ -5,7 +5,9 @@ interface historicStats {
 	user: string;
 	status: string;
 	progresso: number;
-	generate_player_data: number;
+	generate_player_data: boolean;
+	grab_match_data: boolean;
+	generete_augment_stats: boolean;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -19,7 +21,7 @@ function connect() {
 function createQueue(channel, queue) {
 	return new Promise((resolve, reject) => {
 		try {
-			channel.assertQueue(queue, { durable: false });
+			channel.assertQueue(queue, { durable: true });
 			resolve(channel);
 		} catch (err) {
 			reject(err);
