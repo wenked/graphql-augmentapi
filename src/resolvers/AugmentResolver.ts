@@ -1,25 +1,24 @@
-import { Query, Resolver, Mutation, Arg, Int } from "type-graphql";
+import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { Augment } from "../models/Augment";
 import { Historic_Stats } from "../models/Historic_Stats";
 
-import chalk from "chalk";
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 import { sendToQueue } from "../../queue";
+import { log } from "../utils";
 
 @Resolver()
 export default class AugmentResolver {
 	@Query(() => [Augment])
 	async Augments() {
 		try {
-			console.log(chalk.greenBright.bold("Executando augments query"));
+			log.info("Buscando dados dos augments");
 			const augments = await prisma.augments.findMany();
-
-			console.log(chalk.blueBright.bold(`Found ${augments.length} augments`));
 
 			return augments;
 		} catch (error) {
-			console.log(chalk.redBright(`Error: ${error}`));
+			log.error(`Error in Augments: ${error}`);
 			throw new Error("Error fetching augments");
 		}
 	}
@@ -29,22 +28,22 @@ export default class AugmentResolver {
 		try {
 			const historic_stats = await prisma.historic_stats.create({
 				data: {
-					user: "teste",
 					status: "Inicializando",
+					user: "teste",
 				},
 			});
 			const teste = {
 				...historic_stats,
 				generate_player_data: false,
-				grab_match_data: false,
 				generete_augment_stats: true,
+				grab_match_data: false,
 			};
 
 			await sendToQueue("augments_queue", teste);
 
 			return historic_stats;
 		} catch (error) {
-			console.log(chalk.redBright(`Error: ${error}`));
+			log.error(`Error in Send_to_queue: ${error}`);
 			throw new Error("Erro ao enviar para fila");
 		}
 	}
@@ -56,7 +55,7 @@ export default class AugmentResolver {
 
 			return historic_stats;
 		} catch (error) {
-			console.log(chalk.redBright(`Error: ${error}`));
+			log.error(`Error in get_Historic_Stats: ${error}`);
 			throw new Error("Erro ao entcontrar hiusotric stats");
 		}
 	}

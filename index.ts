@@ -5,12 +5,12 @@ import chalk from "chalk";
 import path from "path";
 import { buildSchema } from "type-graphql";
 import AugmentResolver from "./src/resolvers/AugmentResolver";
-import PlayerDataResolver from "./src/resolvers/PlayerData/PlayerDataResolver";
+import PlayerMatchesDataResolver from "./src/resolvers/PlayerData/PlayerMatchesDataResolver";
 
 async function main() {
 	const schema = await buildSchema({
 		emitSchemaFile: path.resolve(__dirname, "schema.gql"),
-		resolvers: [AugmentResolver, PlayerDataResolver],
+		resolvers: [AugmentResolver, PlayerMatchesDataResolver],
 	});
 
 	const server = new ApolloServer({ schema });

@@ -1,3 +1,3 @@
-import getPlayerData from "./getPlayerData";
+import getPlayerMatchesData from "./getPlayerMatchesData";
 
-export { getPlayerData };
+export { getPlayerMatchesData };

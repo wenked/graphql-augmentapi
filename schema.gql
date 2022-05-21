@@ -19,6 +19,12 @@ type Augment {
   winrate: String
 }
 
+type Companion {
+  content_ID: String!
+  skin_ID: String!
+  species: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -33,18 +39,62 @@ type Historic_Stats {
   user: String!
 }
 
-type Player {
-  account_id: String!
-  created_at: DateTime!
-  id: ID!
-  name: String!
+type Info {
+  game_datetime: Float!
+  game_length: Float!
+  game_version: String!
+  participants: [Participant!]!
+  queue_id: String!
+  tft_game_type: String!
+  tft_set_name: String!
+  tft_set_number: Float!
+}
+
+type MatchDetail {
+  info: Info!
+  metadata: Metadata!
+}
+
+type Metadata {
+  data_version: String!
+  match_id: String!
+  participants: [String!]!
+}
+
+type Participant {
+  augments: [String!]!
+  companion: Companion!
+  gold_left: Float!
+  last_round: Float!
+  placement: Float!
+  players_eliminated: Float!
   puuid: String!
-  updated_at: DateTime!
+  time_eliminated: Float!
+  total_damage_to_players: Float!
+  traits: [Trait!]!
+  units: [Unit!]!
 }
 
 type Query {
   Augments: [Augment!]!
   get_Historic_Stats(id: Float!): Historic_Stats!
-  getPlayer(name: String!): Player!
+  MatchesData(name: String!, region: String!): [MatchDetail!]!
   Send_to_queue: Historic_Stats!
+}
+
+type Trait {
+  name: String!
+  num_units: Float!
+  style: Float!
+  tier_current: Float!
+  tier_total: Float!
+}
+
+type Unit {
+  character_id: String!
+  itemNames: [String!]!
+  items: [Float!]!
+  name: String!
+  rarity: String!
+  tier: Float!
 }
