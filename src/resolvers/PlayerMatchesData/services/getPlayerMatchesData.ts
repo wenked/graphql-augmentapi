@@ -60,7 +60,7 @@ export default async function getPlayerMatchesData({
 		}
 
 		const continent = getContinent(region);
-
+		console.log(continent);
 		const { data: matches } = await axios.get(
 			`https://${continent}.api.riotgames.com/tft/match/v1/matches/by-puuid/${player.puuid}/ids?start=${page}&count=${limit}&api_key=${process.env.RIOT_API_KEY}`
 		);

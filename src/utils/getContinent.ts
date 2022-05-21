@@ -1,10 +1,17 @@
 export default function getContinent(region: string) {
 	switch (region) {
-		case "br1" || "la1" || "la2" || "na1":
+		case "br1":
+		case "la1":
+		case "la2":
+		case "na1":
 			return "americas";
-		case "eun1" || "euw1" || "tr1" || "ru":
+		case "eun1":
+		case "euw1":
+		case "ru":
+		case "tr1":
 			return "europe";
-		case "jp1" || "kr":
+		case "jp1":
+		case "kr":
 			return "asia";
 		default:
 			return "";

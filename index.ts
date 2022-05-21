@@ -4,8 +4,8 @@ import "reflect-metadata";
 import chalk from "chalk";
 import path from "path";
 import { buildSchema } from "type-graphql";
-import AugmentResolver from "./src/resolvers/AugmentResolver";
-import PlayerMatchesDataResolver from "./src/resolvers/PlayerData/PlayerMatchesDataResolver";
+import AugmentResolver from "./src/resolvers/Augment/AugmentResolver";
+import PlayerMatchesDataResolver from "./src/resolvers/PlayerMatchesData/PlayerMatchesDataResolver";
 
 async function main() {
 	const schema = await buildSchema({

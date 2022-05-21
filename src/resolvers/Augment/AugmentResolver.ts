@@ -1,17 +1,17 @@
 import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
-import { Augment } from "../models/Augment";
-import { Historic_Stats } from "../models/Historic_Stats";
+import { Augment } from "../../models/Augment";
+import { Historic_Stats } from "../../models/Historic_Stats";
 
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-import { sendToQueue } from "../../queue";
-import { log } from "../utils";
+import { sendToQueue } from "../../../queue";
+import { log } from "../../utils";
 
 @Resolver()
 export default class AugmentResolver {
 	@Query(() => [Augment])
-	async Augments() {
+	async augments() {
 		try {
 			log.info("Buscando dados dos augments");
 			const augments = await prisma.augments.findMany();
@@ -24,7 +24,7 @@ export default class AugmentResolver {
 	}
 
 	@Query(() => Historic_Stats)
-	async Send_to_queue() {
+	async sendToQueue() {
 		try {
 			const historic_stats = await prisma.historic_stats.create({
 				data: {
@@ -49,7 +49,7 @@ export default class AugmentResolver {
 	}
 
 	@Query(() => Historic_Stats)
-	async get_Historic_Stats(@Arg("id") id: number) {
+	async getHistoricStats(@Arg("id") id: number) {
 		try {
 			const historic_stats = await prisma.historic_stats.findUnique({ where: { id } });
 

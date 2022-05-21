@@ -76,10 +76,10 @@ type Participant {
 }
 
 type Query {
-  Augments: [Augment!]!
-  get_Historic_Stats(id: Float!): Historic_Stats!
+  augments: [Augment!]!
+  getHistoricStats(id: Float!): Historic_Stats!
   MatchesData(name: String!, region: String!): [MatchDetail!]!
-  Send_to_queue: Historic_Stats!
+  sendToQueue: Historic_Stats!
 }
 
 type Trait {
