@@ -33,8 +33,18 @@ type Historic_Stats {
   user: String!
 }
 
+type Player {
+  account_id: String!
+  created_at: DateTime!
+  id: ID!
+  name: String!
+  puuid: String!
+  updated_at: DateTime!
+}
+
 type Query {
   Augments: [Augment!]!
   get_Historic_Stats(id: Float!): Historic_Stats!
+  getPlayer(name: String!): Player!
   Send_to_queue: Historic_Stats!
 }
