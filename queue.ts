@@ -1,15 +1,14 @@
 import chalk from "chalk";
+import log from "./src/utils/logger";
 
 interface historicStats {
-	id: number;
-	user: string;
-	status: string;
-	progresso: number;
-	generate_player_data: boolean;
-	grab_match_data: boolean;
-	generete_augment_stats: boolean;
 	created_at: Date;
+	id: number;
+	progresso: number;
+	service: string;
+	status: string;
 	updated_at: Date;
+	user: string;
 }
 
 function connect() {
@@ -35,7 +34,7 @@ export async function sendToQueue(queue: String, message: historicStats) {
 		await createQueue(channel, queue);
 		channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)));
 
-		console.log(chalk.greenBright.bold(`Message sent to queue ${queue}`));
+		log.info(`Message sent to queue: ${chalk.bold.blueBright(queue)}`);
 	} catch (error) {
 		console.log(chalk.redBright(`Error: ${error}`));
 		throw new Error("Erro ao enviar para fila");

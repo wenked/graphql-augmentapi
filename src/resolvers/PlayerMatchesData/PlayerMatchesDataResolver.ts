@@ -7,7 +7,7 @@ import { getPlayerMatchesData } from "./services";
 @Resolver()
 export default class PlayerMatchesDataResolver {
 	@Query(() => [MatchDetail])
-	async MatchesData(@Arg("name") name: string, @Arg("region") region: string) {
+	async matchesData(@Arg("name") name: string, @Arg("region") region: string) {
 		try {
 			const matchesData = await getPlayerMatchesData({ name, region });
 

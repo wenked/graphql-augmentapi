@@ -6,6 +6,7 @@ import path from "path";
 import { buildSchema } from "type-graphql";
 import AugmentResolver from "./src/resolvers/Augment/AugmentResolver";
 import PlayerMatchesDataResolver from "./src/resolvers/PlayerMatchesData/PlayerMatchesDataResolver";
+import log from "./src/utils/logger";
 
 async function main() {
 	const schema = await buildSchema({
@@ -16,7 +17,7 @@ async function main() {
 	const server = new ApolloServer({ schema });
 
 	const { url } = await server.listen();
-	console.log(`${chalk.bold.green("Server is running")} on ${chalk.bold.blueBright(url)}`);
+	log.info(`🚀 Server ready at ${chalk.bold.blueBright(url)}`);
 }
 
 main();

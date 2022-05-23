@@ -24,24 +24,19 @@ export default class AugmentResolver {
 	}
 
 	@Query(() => Historic_Stats)
-	async sendToQueue() {
+	async sendToQueue(@Arg("service") service: string) {
 		try {
-			const historic_stats = await prisma.historic_stats.create({
+			const historicStats = await prisma.historic_stats.create({
 				data: {
+					service,
 					status: "Inicializando",
 					user: "teste",
 				},
 			});
-			const teste = {
-				...historic_stats,
-				generate_player_data: false,
-				generete_augment_stats: true,
-				grab_match_data: false,
-			};
 
-			await sendToQueue("augments_queue", teste);
+			await sendToQueue("augments_queue", { ...historicStats });
 
-			return historic_stats;
+			return historicStats;
 		} catch (error) {
 			log.error(`Error in Send_to_queue: ${error}`);
 			throw new Error("Erro ao enviar para fila");

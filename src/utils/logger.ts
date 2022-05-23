@@ -6,7 +6,7 @@ const log = logger({
 		pid: false,
 	},
 	prettyPrint: true,
-	timestamp: () => `,"time":"${dayjs().format()}"`,
+	timestamp: () => `,"time":"${dayjs().locale("pt-br").format()}"`,
 });
 
 export default log;
